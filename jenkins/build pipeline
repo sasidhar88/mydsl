@@ -1,0 +1,14 @@
+pipeline{
+    agent any
+    stages{
+        stage('build'){
+            steps{
+                sh 'echo "my first pipeline"'
+                sh '''
+                echo "by th way, i can do lot more here"
+                ls -la
+                '''
+            }
+        }
+    }
+}

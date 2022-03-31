@@ -1,0 +1,8 @@
+wordpressUsername: sasi
+wordpressPassword: sasi
+wordpressEmail: k.sasidharvarma@gmail.com
+wordpressFirstName: sasidhar
+wordpressLastName: varma
+wordpressBlogName: Jhooq.com
+service: 
+  type: NodePort

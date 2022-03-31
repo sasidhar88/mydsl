@@ -1,0 +1,15 @@
+---
+- name: adding users and copy passwd to user homwee directory
+  hosts: all
+  tasks:
+   - name: add user sasi
+     user:
+      name: sasi
+      password: sasisasi
+      uid: 123456
+      home: /home/sasi
+   - name: copy passwd file to user home directory
+     copy:
+       src: /etc/passwd
+       dest: /home/sasi
+...

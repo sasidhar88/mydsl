@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mynginx-dply
+spec:
+  template:
+    metadata:
+       name: mynginx-pod
+       labels:
+        app: myapp
+        type: front-end
+    spec:
+      containers:
+       - name: mynginx-container
+         image: nginx
+  replicas: 3
+  selector:
+    matchLabels:
+       type: frontend   

@@ -1,0 +1,10 @@
+---
+- name: uninstall docker
+  hosts: all
+  tasks:
+    - name: uninstall docker
+      apt:
+       name: docker
+       state: absent
+       update_cache: no
+...

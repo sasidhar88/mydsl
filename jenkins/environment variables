@@ -1,0 +1,14 @@
+pipeline{
+    agent any 
+    environment{
+        NAME= 'sasi'
+        LASTNAME= 'varma'
+    }
+    stages{
+        stage('build'){
+            steps{
+                sh 'echo $NAME $LASTNAME'
+            }
+        }
+    }
+}

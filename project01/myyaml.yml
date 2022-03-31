@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metdata:
+  name: myabc-pod
+  labels:
+   app: myapp
+   type: front-end
+spec:
+  containers:
+    - name: myabc-container
+      image: sasidhar888/myabc:0.8
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: myservice
+spec:
+    type: NodePort
+    ports:
+      - name: http
+        protocol: TCP
+        port: 8080
+        targetPort: 8080
+        nodePort: 30000
+    slelector:
+        type: front-end

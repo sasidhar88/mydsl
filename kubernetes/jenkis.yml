@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myjenkins-pod
+  labels:
+   app: myapp
+   type: myjenkins
+spec:
+  containers:
+   - name: myjenkins-container
+     image: jenkins/jenkins
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myservice
+spec:
+ type: NodePort
+ ports:
+   - name: http
+     protocol: TCP 
+     port: 8080
+     targetPort: 8080
+     nodePort: 30008
+ selector:
+    type: myjenkins

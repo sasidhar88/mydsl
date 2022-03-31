@@ -1,0 +1,24 @@
+version: '3'
+services:
+        devserver:
+          container_name: myjenkins
+          image: jenkins/jenkins
+          ports:
+              - 8080:8080
+          volumes:
+               - /home/ubuntu/jenkins/jenkins_home:/var/jenkins_home
+          networks:
+                  - mynet
+
+        myhost:
+             container_name: myubuntu01
+             image: myubuntu
+             build:
+                 context: myubuntu
+             networks:
+                  - mynet
+networks:
+        mynet:
+ 
+   
+ 

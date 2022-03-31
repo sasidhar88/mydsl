@@ -1,0 +1,5 @@
+ansible-vault create sample.yml
+ansible-vault view sample.yml
+ansible-vault edit sample.yml
+ansible-vault decrypt sample.yml
+ansible-playbook sample.yml --ask-vault-pass

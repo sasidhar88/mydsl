@@ -1,0 +1,35 @@
+pipeline{
+    agent any
+    tools {
+  maven 'maven01'
+}
+    environment {
+      DOCKER_TAG = getVersion()
+    }
+    stages{
+        stage('scm'){
+            steps{
+              git 'https://github.com/javahometech/dockeransiblejenkins.git'
+               sh 'mvn clean package'
+            }
+        }
+        stage('docker image'){
+            steps{
+         sh "docker build . -t sasidhar888/myabc:${DOCKER_TAG} "
+            }
+        }
+        stage('docker push'){
+            steps{
+           withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerpwd')]) {
+         sh "docker login -u sasidhar888 -p ${dockerpwd}"
+}
+      sh 'docker push sasidhar888/myabc:${DOCKER_TAG} '
+            }
+        }
+    }
+}
+def getVersion(){
+    def commitHash = sh label: '', returnStdout: true, script: 'git rev-parse --short HEAD'
+    return commitHash
+}
+

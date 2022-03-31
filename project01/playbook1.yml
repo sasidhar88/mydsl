@@ -1,0 +1,15 @@
+---
+- name: creating docker image
+  hosts: all
+  tasks:
+  - name: copying docker image to artifact
+    copy:
+     src: /ans/ansible/qaenv.war
+     dest: /home/ubuntu/dns/docker
+  - name: copying dockerfile to docker
+    copy:
+     src: /ans/ansible/Dockerfile
+     dest: /opt/docker
+  - name:
+    shell: docker build -t Sasidhar888/myimage .
+      

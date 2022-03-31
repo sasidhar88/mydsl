@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicaSet
+metadata:
+  name: myrs
+  labels:
+   app: myapp
+   type: front-end
+spec:
+  template:
+    metadata:
+     labels:
+      app: myapp-pod
+      type: front-end
+    spec:  
+     containers:
+       - name: mynginx-container
+         image: nginx
+  replicas: 3
+  selector:
+    matchLabels:
+      type: frontend

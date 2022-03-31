@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ReplicaConroller
+metadata:
+  name: myrc
+  labels:
+   app: myapp
+   type: front-end
+spec:
+  template:
+    metadata:
+     labels:
+      app: myapp
+      type front-end
+    spec:  
+     containers:
+       - name: mynginx-container
+         image: nginx
+  replicas: 3
+  

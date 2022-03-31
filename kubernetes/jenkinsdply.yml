@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+     name: myjenkins-deploy
+
+spec:
+   template:
+     metadata:
+       name: myjenkins-pod
+       labels:
+         app: myapp
+         type: front-end
+     spec:
+        containers:
+           - name: myjenkins-container
+             image: jenkins/jenkins
+   replicas: 3
+   selector:
+           matchLabels:
+                   type: front-end
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myjenkins-service
+spec:
+  selector:
+     type: front-end
+  type: NodePort
+  ports:
+          - name: http
+            protocol: TCP
+            port: 8080
+            targetPort: 8080
+            nodePort: 30006

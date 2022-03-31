@@ -1,0 +1,18 @@
+job('job_dsl_example') {
+ description('my first dsl_job')
+   parameters {
+        booleanParam('FLAG', true)
+        choiceParam('OPTION', ['A (default)', 'B', 'C'])
+    }
+      scm {
+        git('https://github.com/sasidhar88/mycode.git', 'master')
+    }
+ triggers {
+        scm('H 5 * * 7')
+    } 
+ steps {
+        shell('echo Hello World!')
+    }
+}
+
+}
